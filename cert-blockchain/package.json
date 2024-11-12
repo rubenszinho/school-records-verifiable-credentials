@@ -1,14 +1,22 @@
 {
-  "name": "school-records-verifiable-credentials",
+  "name": "cert-blockchain",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "truffle compile",
-    "postcompile": "cp build/contracts/CertificateRegistry.json ../cert-frontend/src/artifacts/contracts/"
+    "compile": "npx hardhat compile",
+    "postcompile": "mkdir -p ../cert-frontend/src/artifacts/contracts && cp ./artifacts/contracts/CertificateRegistry.sol/CertificateRegistry.json ../cert-frontend/src/artifacts/contracts/",
+    "test": "npx hardhat test",
+    "test:coverage": "npx hardhat coverage",
+    "deploy": "npx hardhat run scripts/deploy.js --network ganache",
+    "clean": "npx hardhat clean && rm -rf ../cert-frontend/src/artifacts/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "ganache": "^7.9.2",
+    "hardhat": "^2.22.15"
+  }
 }
